@@ -84,7 +84,7 @@ def check_consecutive(l):
     else:
         return False
 
-
+# checks for a win after each turn
 def after_turn_check(rows_arr, num_in_a_row):
     cols_arr = arr_of_columns(rows_arr)
 
@@ -121,5 +121,126 @@ def add_to_board(move, rows_arr, player):
     return rows_arr
 
 
+# gameplay
+def game(rows_arr):
 
-print("Welcome to Connect Four!")
+    # ensures a turn ends when it needs to for each player
+    player_one_turn = True
+    player_two_turn = False
+
+    # show the board to the players at the start
+    print("\nPlayer 1's tokens are red and Player 2's tokens are yellow. Have fun!\n")
+    visual_board(rows_arr)
+    
+    # keeps the game going until players decide to quit or the game ends
+    play_again = ""
+
+    while play_again != "q":
+
+        # player one's turn
+        while player_one_turn == True:
+            # inputs the player's move
+            player_move = input("\nMake your move, Player 1!\n")
+
+            # checks that the player gave a number
+            if player_move.isdigit():
+
+                # checks that the player gave a valid column number
+                if int(player_move) in range(1, len(rows_arr[0]) + 1):
+
+                    # checks that the column chosen is not full
+                    if rows_arr[5][int(player_move) - 1] == 0:
+                        
+                        # player's move is added to the board and the visual is returned after the move
+                        add_to_board(player_move, rows_arr, 1)
+                        print("\n")
+                        visual_board(rows_arr)
+
+                        # checks if the move resulted in a win
+                        if after_turn_check(rows_arr, 4) == True:
+                            print("Outstanding! Player 1 wins!")
+                            play_again = "q"
+                            break
+
+                        else:
+
+                            # checks if there is any more spaces available to play after each player's turn
+                            full_board_count = 0
+                            for row in rows_arr:
+                                if 0 not in row:
+                                    full_board_count += 1
+                            if full_board_count == len(rows_arr):
+                                print("Congrats, nobody wins!")
+                                play_again = "q"
+                                player_one_turn = False
+                            
+                            # turn ends for the player and starts for the next player. option to quit the game is given
+                            else:
+                                player_one_turn = False
+                                player_two_turn = True
+                                play_again = input("Keep the game going! Or enter 'q' to quit.\n")
+                    else:
+                        print("No more spaces available for that column. Try again!")
+                else:
+                    print("Please enter a valid column number!")
+            else:
+                print("Please enter a column number.")
+        
+        # ends game if player decides to quit after their turn
+        if play_again == "q":
+            break
+
+        # player two's turn (conditions checked are the same as for player one)
+        while player_two_turn == True:
+            
+            player_move = input("\nPlayer 2's turn! Choose a column:\n")
+            
+            if player_move.isdigit():
+                
+                if int(player_move) in range(1, len(rows_arr[0]) + 1):
+                    
+                    if rows_arr[5][int(player_move) - 1] == 0:
+                        
+                        add_to_board(player_move, rows_arr, 2)
+                        print("\n")
+                        visual_board(rows_arr)
+
+                        if after_turn_check(rows_arr, 4) == True:
+
+                            print("Amazing! Player 2 wins!")
+                            play_again = "q"
+                            break
+
+                        else:
+                            full_board_count = 0
+                            for row in rows_arr:
+                                if 0 not in row:
+                                    full_board_count += 1
+                            if full_board_count == len(rows_arr):
+                                print("Congrats, nobody wins!")
+                                play_again = "q"
+                                player_two_turn = False
+                            
+                            else:
+                                player_one_turn = True
+                                player_two_turn = False
+                                play_again = input("No winner just yet, keep going! Or enter 'q' to quit.\n")
+                    else:
+                        print("No more spaces available for that column. Try again!")
+                else:
+                    print("Please enter a valid column number!")
+                
+            else:
+                print("Please enter a column number.")
+
+        if play_again == "q":
+            break
+
+# introduces the game and asks the players to start the game
+def start_game():
+    print("\nWelcome to Connect Four!\n\nPlace tokens on a 7x6 board and try to get 4 in a row to win!\nThis is a 2 player game, so grab a friend and play together!\n")
+    initializer = input("Are you both ready? Type 'y' to start!\n")
+    if initializer == "y":
+        game(main_rows_arr)
+
+start_game()
