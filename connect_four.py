@@ -111,6 +111,14 @@ def after_turn_check(rows_arr, num_in_a_row):
             return True
     return False
 
+# adds a player's move to the next open space in the column they selected
+def add_to_board(move, rows_arr, player):
+    move = int(move) - 1
+    for row in rows_arr:
+        if row[move] == 0:
+            row[move] = player
+            break
+    return rows_arr
 
 
 
