@@ -178,7 +178,7 @@ def game(rows_arr):
                             else:
                                 player_one_turn = False
                                 player_two_turn = True
-                                play_again = input("Keep the game going! Or enter 'q' to quit.\n")
+                                play_again = input("\nKeep the game going! Or enter 'q' to quit.\n")
                     else:
                         print("No more spaces available for that column. Try again!")
                 else:
@@ -224,7 +224,7 @@ def game(rows_arr):
                             else:
                                 player_one_turn = True
                                 player_two_turn = False
-                                play_again = input("No winner just yet, keep going! Or enter 'q' to quit.\n")
+                                play_again = input("\nNo winner just yet, keep going! Or enter 'q' to quit.\n")
                     else:
                         print("No more spaces available for that column. Try again!")
                 else:
@@ -238,7 +238,7 @@ def game(rows_arr):
 
 # introduces the game and asks the players to start the game
 def start_game():
-    print("\nWelcome to Connect Four!\n\nPlace tokens on a 7x6 board and try to get 4 in a row to win!\nThis is a 2 player game, so grab a friend and play together!\n")
+    print("\nWelcome to Connect Four!\nCreated by: Jonathan Munoz\n\nPlace tokens on a 7x6 board and try to get 4 in a row to win!\nThis is a 2 player game, so grab a friend and play together!\n")
     initializer = input("Are you both ready? Type 'y' to start!\n")
     if initializer == "y":
         game(main_rows_arr)
