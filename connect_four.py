@@ -238,6 +238,23 @@ def game(rows_arr):
 
 # introduces the game and asks the players to start the game
 def start_game():
+    print("""
+        ||||||||||    ||||||||||    ||        ||    ||        ||    ||||||||    ||||||||||    ||||||||||
+        ||            ||      ||    ||||      ||    ||||      ||    ||          ||                ||
+        ||            ||      ||    ||  ||    ||    ||  ||    ||    ||          ||                ||
+        ||            ||      ||    ||    ||  ||    ||    ||  ||    ||||||      ||                ||
+        ||            ||      ||    ||      ||||    ||      ||||    ||          ||                ||
+        ||||||||||    ||||||||||    ||        ||    ||        ||    ||||||||    ||||||||||        ||
+
+
+
+        ||||||||||    ||||||||||    ||      ||    ||||||||||    ||           ||          ||
+        ||            ||      ||    ||      ||    ||      ||    ||           ||          ||
+        ||||||        ||      ||    ||      ||    ||||||||||    ||           
+        ||            ||      ||    ||      ||    ||  ||        ||       ||                  ||
+        ||            ||      ||    ||      ||    ||    ||                 ||              ||
+        ||            ||||||||||    ||||||||||    ||      ||    ||           ||||||||||||||
+          """)
     print("\nWelcome to Connect Four!\nCreated by: Jonathan Munoz\n\nPlace tokens on a 7x6 board and try to get 4 in a row to win!\nThis is a 2 player game, so grab a friend and play together!\n")
     initializer = input("Are you both ready? Type 'y' to start!\n")
     if initializer == "y":
