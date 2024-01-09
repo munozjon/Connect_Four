@@ -1,4 +1,5 @@
 import numpy as np
+from time import sleep
 
 # main board rows
 main_rows_arr = np.zeros((6, 7), int)
@@ -172,13 +173,13 @@ def game(rows_arr):
                             if full_board_count == len(rows_arr):
                                 print("Congrats, nobody wins!")
                                 play_again = "q"
-                                player_one_turn = False
+                                break
                             
                             # turn ends for the player and starts for the next player. option to quit the game is given
                             else:
                                 player_one_turn = False
                                 player_two_turn = True
-                                play_again = input("\nKeep the game going! Or enter 'q' to quit.\n")
+                                sleep(1)
                     else:
                         print("No more spaces available for that column. Try again!")
                 else:
@@ -186,9 +187,6 @@ def game(rows_arr):
             else:
                 print("Please enter a column number.")
         
-        # ends game if player decides to quit after their turn
-        if play_again == "q":
-            break
 
         # player two's turn (conditions checked are the same as for player one)
         while player_two_turn == True:
@@ -219,12 +217,12 @@ def game(rows_arr):
                             if full_board_count == len(rows_arr):
                                 print("Congrats, nobody wins!")
                                 play_again = "q"
-                                player_two_turn = False
+                                break
                             
                             else:
                                 player_one_turn = True
                                 player_two_turn = False
-                                play_again = input("\nNo winner just yet, keep going! Or enter 'q' to quit.\n")
+                                sleep(1)
                     else:
                         print("No more spaces available for that column. Try again!")
                 else:
